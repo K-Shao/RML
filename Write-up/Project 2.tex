@@ -390,61 +390,38 @@ Another problem with random forests is that it treated our classes as continuous
 In this section, we will present interesting cases where KNN, our most accurate classifier, failed to correctly identify the digit. Interestingly, from a human perspective, many of these misclassifications are somewhat understandable.
 
 \begin{table}[H]
-\begin{tabular}{c c}
-\begin{subfigure}{0.4\textwidth}\centering\includegraphics[scale = .25]{../Images/358.png}\caption{Case 358: Classified as 4, truth is 7.}\label{fig:taba}\end{subfigure}&
-\begin{subfigure}{0.4\textwidth}\centering\includegraphics[scale = .25]{../Images/445.png}\caption{Case 445: Classified as 0, truth is 6.}\label{fig:taba}\end{subfigure}\\
-\newline
-\begin{subfigure}{0.4\textwidth}\centering\includegraphics[scale = .25]{../Images/551.png}\caption{Case 551: Classified as 1, truth is 7.}\label{fig:taba}\end{subfigure}&
-\begin{subfigure}{0.4\textwidth}\centering\includegraphics[scale = .25]{../Images/583.png}\caption{Case 583: Classified as 7, truth is 2.}\label{fig:taba}\end{subfigure}\\
-\newline
-\begin{subfigure}{0.4\textwidth}\centering\includegraphics[scale = .25]{../Images/646.png}\caption{Case 646: Classified as 6, truth is 2.}\label{fig:taba}\end{subfigure}&
-\begin{subfigure}{0.4\textwidth}\centering\includegraphics[scale = .25]{../Images/740.png}\caption{Case 740: Classified as 9, truth is 4.}\label{fig:taba}\end{subfigure}\\
-\newline
-\begin{subfigure}{0.4\textwidth}\centering\includegraphics[scale = .25]{../Images/947.png}\caption{Case 947: Classified as 9, truth is 8.}\label{fig:taba}\end{subfigure}&
-\begin{subfigure}{0.4\textwidth}\centering\includegraphics[scale = .25]{../Images/965.png}\caption{Case 965: Classified as 0, truth is 6.}\label{fig:taba}\end{subfigure}
+\begin{tabular}{c c c}
+\begin{subfigure}{0.3\textwidth}\centering\includegraphics[scale = .25]{../Images/358.png}\caption{Case 358: Predict - 4, True - 7.}\label{fig:taba}\end{subfigure}&
+\begin{subfigure}{0.3\textwidth}\centering\includegraphics[scale = .25]{../Images/445.png}\caption{Case 445: Predict - 0, True - 6.}\label{fig:taba}\end{subfigure}&
+\begin{subfigure}{0.3\textwidth}\centering\includegraphics[scale = .25]{../Images/551.png}\caption{Case 551: Predict - 1, True - 7.}\label{fig:taba}\end{subfigure}
 \end{tabular}
 \end{table}
+\newpage
+\begin{table}{H}
+\begin{tabular}{c c c}
+\begin{subfigure}{0.3\textwidth}\centering\includegraphics[scale = .25]{../Images/583.png}\caption{Case 583: Predict - 7, True - 2.}\label{fig:taba}\end{subfigure}&
+\newline
+\begin{subfigure}{0.3\textwidth}\centering\includegraphics[scale = .25]{../Images/646.png}\caption{Case 646: Predict - 6, True - 2.}\label{fig:taba}\end{subfigure}&
+\begin{subfigure}{0.3\textwidth}\centering\includegraphics[scale = .25]{../Images/740.png}\caption{Case 740: Predict - 9, True - 4.}\label{fig:taba}\end{subfigure}\\
+\newline
+\begin{subfigure}{0.3\textwidth}\centering\includegraphics[scale = .25]{../Images/947.png}\caption{Case 947: Predict - 9, True - 8.}\label{fig:taba}\end{subfigure}&
+\begin{subfigure}{0.3\textwidth}\centering\includegraphics[scale = .25]{../Images/965.png}\caption{Case 965: Predict - 0, True - 6.}\label{fig:taba}\end{subfigure}&
+your spot
+\end{tabular}
+\end{table}
+
+
+\section{Real World Applications}
+
+While being able to classify numbers provided by test set is cool, its not exactly applicable to the real world. Thus, we found a way to turn an image into .csv format so that it can be predicted by our various models. For the image classification, we used knn. LDA had too big of an error, QDA can not be used unless we have more observations than predictors and random foresting is just incompatible with our data.\\\\
+The first step was drawing our data, which we used MSPaint to do. There were small errors when we read the file into R and then scaled it, since if we started with a small image there would be virtually no grayscaling. We found that using a 560x560 pixel image with a brush size of about 40 pixels was optimal for sizing.\\\\
+The next problem was turning the data into a format where knn could be run on it. We read the image into R and obtained all the data for each pixel. However, these values were in a 28x28 data frame rather than a vector. Separating out the matrix into a length 784 vector, we were able to run our knn model on the inputted data.
 
 \section{Conclusion}
 For LDA, our results of 25\% test error is quite decent for our methods. The main roadblock to LDA was complexity: matrix inversion, which is at the core of LDA, is a computationally expensive routine, so we were forced to use a smaller dataset than possible. Even then, the training phase was sluggish. However, the test phase was instantaneous, in contrast to KNN, but at the cost of a slightly lowered accuracy. \\\\
 For QDA, our results were similar to LDA, but all our errors were lower. The training error of 3\% is almost on par with that of KNN, and the test error does not lag behind by much more at 10\%. The major downside to using QDA was that it required a large number of observations, which took more time for R to process.\\\\
 For KNN, the findings were essentially opposites of LDA. Our test error was uncannily accurate, with a mere 3\% error rate, and this method requires no training phase. However, its drawback was an extremely sluggish test speed. Of course, reducing the training size could have sped it it up at the cost of accuracy, harkening back to the classic speed-performance tradeoff. \\\\
 For random forests, we arrived at the conclusion that this method is simply ineffective for dealing with our task. Since classifying images involves so many predictors, the tree that the algorithm arrives at is cluttered and nonsensical. Our test error was 90\%, no better than a random guess, despite a training error of 54\%. 
-<<<<<<< HEAD
-=======
-
-\section {Interesting (Mis)classifications}
-
-In this section, we will present interesting cases where KNN, our most accurate classifier, failed to correctly identify the digit. Interestingly, from a human perspective, many of these misclassifications are somewhat understandable. 
-
-Case 358. Classified as 4, truth is 7. 
-\includegraphics[scale=.4] {../Images/358.png} 
-
-Case 445. Classified as 0, truth is 6. 
-\includegraphics[scale=.4] {../Images/445.png}
-
-Case 551. Classified as 1, truth is 7. 
-\includegraphics[scale=.4] {../Images/551.png}
-
-Case 583. Classified as 7, truth is 2. 
-\includegraphics[scale=.4] {../Images/583.png}
-
-Case 646. CLassified as 6, truth is 2. 
-\includegraphics[scale=.4] {../Images/646.png}
-
-Case 740. Classified as 9, truth is 4. 
-\includegraphics[scale=.4] {../Images/740.png}
-
-Case 947. Classified as 9, truth is 8. 
-\includegraphics[scale=.4] {../Images/947.png}
-
-Case 965. Classified as 0, truth is 6. 
-\includegraphics[scale=.4] {../Images/965.png}
-
-
-
-
->>>>>>> 38d9c45aab0400b6ca560cf9f094467e2a03122b
 \end{document}
 
 
