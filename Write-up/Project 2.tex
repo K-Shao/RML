@@ -13,7 +13,7 @@
 \DeclareDocumentCommand{\start}{ O{Kevin Shao \& Jeffrey Cheng} m m m }{#1\\#2\\#3\\#4}
 \DeclareDocumentCommand{\blank}{}{\textrm{ }}
 
-\title{Multiple Methods of Classification in R:\\ Classifying Handwritten Numbers 0-9\\\textrm{ }\\\large Regression and Machine Learning F}
+\title{Multiple Methods of Classification in R:\\ Classifying Handwritten Numbers 0-9\\\textrm{ }\\\large Regression and Machine Learning}
 \date{14 May 2018}
 \author{Kevin Shao \& Jeffrey Cheng}
 
@@ -314,7 +314,7 @@ With this implementation of KNN and choice of $k$, we arrive at a test error rat
 	5& 1 & 0 & 0 & 12 & 0 & 866 & 2 & 0 & 12 & 4\\
 	6& 2 & 0 & 2 & 1 & 5 & 4 & 944 & 0 & 1 & 1\\
 	7& 1 & 0 & 16 & 7 & 1 & 1 & 0 & 988 & 6 & 11\\
-	8& 0 & 0 & 4 & 4 & 1 & 2 & 0 & 0 & 2916 & 2\\
+	8& 0 & 0 & 4 & 4 & 1 & 2 & 0 & 0 & 916 & 2\\
 	9& 0 & 0 & 0 & 4 & 21 & 4 & 0 & 10 & 5 & 963
 	\end{tabular}\\
 	\bigskip
@@ -386,6 +386,37 @@ For LDA, our results of 25\% test error is quite decent for our methods. The mai
 For QDA, our results were similar to LDA, but all our errors were lower. The training error of 3\% is almost on par with that of KNN, and the test error does not lag behind by much more at 10\%. The major downside to using QDA was that it required a large number of observations, which took more time for R to process.\\\\
 For KNN, the findings were essentially opposites of LDA. Our test error was uncannily accurate, with a mere 3\% error rate, and this method requires no training phase. However, its drawback was an extremely sluggish test speed. Of course, reducing the training size could have sped it it up at the cost of accuracy, harkening back to the classic speed-performance tradeoff. \\\\
 For random forests, we arrived at the conclusion that this method is simply ineffective for dealing with our task. Since classifying images involves so many predictors, the tree that the algorithm arrives at is cluttered and nonsensical. Our test error was 90\%, no better than a random guess, despite a training error of 54\%. 
+
+\section {Interesting (Mis)classifications}
+
+In this section, we will present interesting cases where KNN, our most accurate classifier, failed to correctly identify the digit. Interestingly, from a human perspective, many of these misclassifications are somewhat understandable. 
+
+Case 358. Classified as 4, truth is 7. 
+\includegraphics[scale=.4] {../Images/358.png} 
+
+Case 445. Classified as 0, truth is 6. 
+\includegraphics[scale=.4] {../Images/445.png}
+
+Case 551. Classified as 1, truth is 7. 
+\includegraphics[scale=.4] {../Images/551.png}
+
+Case 583. Classified as 7, truth is 2. 
+\includegraphics[scale=.4] {../Images/583.png}
+
+Case 646. CLassified as 6, truth is 2. 
+\includegraphics[scale=.4] {../Images/646.png}
+
+Case 740. Classified as 9, truth is 4. 
+\includegraphics[scale=.4] {../Images/740.png}
+
+Case 947. Classified as 9, truth is 8. 
+\includegraphics[scale=.4] {../Images/947.png}
+
+Case 965. Classified as 0, truth is 6. 
+\includegraphics[scale=.4] {../Images/965.png}
+
+
+
 
 \end{document}
 
