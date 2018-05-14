@@ -334,8 +334,8 @@ We needed to change the names of the variables since randomForest cannot read a 
 The extremely dense formatting of the boxes aside, we only need to look at the topmost split to show why random forest is a terrible way to classify our data. The first split occurs at 14.18, and begins the classification based on the color of that pixel. Essentially, all the splits are performed by looking at the greyscaling of a \textbf{specific} pixel. Even if the training error happened to be low, if each number that was drawn was just shifted one pixel over, then the entire model would fail. The only feasible way for this model to work is to take each image, crop all the whitespace around it, rescale it back to size and give it artificial greyscaling, so the position and size of each image would match the others. However, this is next to impossible, which makes using a different classification method the better approach.\\\\
 \begin{minipage}{.55\textwidth}
 \begin{center}
-\begin{tabular}{c c c c c c c c c c c}
-	 d\textbackslash r&0& 1& 2& 3& 4& 5& 6& 7& 8& 9\\
+\begin{tabular}{c | c c c c c c c c c c}
+	 d\textbackslash r&0& 1& 2& 3& 4& 5& 6& 7& 8& 9\\ \hline
 	 0&70& 0& 0& 0& 0& 0& 0& 0& 0& 0\\
 	 1&65 &154& 0& 0& 0& 0& 1& 0& 0& 1\\
 	 2&31&45&64& 3& 0& 0& 1& 2& 0& 1\\
@@ -367,8 +367,8 @@ Another problem with random forests is that it treated our classes as continuous
 	\quad
 \end{minipage}
 \begin{minipage}{.4\textwidth}
-\begin{tabular}{c c c c c c c c c c c}
- d\textbackslash r&0&1&2&3&4&5&6&7&8&9\\
+\begin{tabular}{c | c c c c c c c c c c}
+ d\textbackslash r&0&1&2&3&4&5&6&7&8&9\\ \hline
  0&3&2&6&3&5&1&5&2&3&5\\
  1&5&10&5&13&7&9&2&5&8&7\\
  2&2&6&2&5&6&6&3&5&3&5\\
