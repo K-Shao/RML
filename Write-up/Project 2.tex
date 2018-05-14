@@ -14,7 +14,7 @@
 \DeclareDocumentCommand{\blank}{}{\textrm{ }}
 
 \title{Multiple Methods of Classification in R:\\ Classifying Handwritten Numbers 0-9\\\textrm{ }\\\large Regression and Machine Learning F}
-\date{16 April 2018}
+\date{14 May 2018}
 \author{Kevin Shao \& Jeffrey Cheng}
 
 \begin{document}
@@ -33,14 +33,10 @@
 %\end{tabular}
 \end{center}
 \newpage
-\noindent \start{Mr. Piper}{Machine Learning}{14 May 2018}
 
 \section{Abstract}
 
-The MNIST dataset (http://yann.lecun.com/exdb/mnist/) is a classic dataset in the field of computer vision. The task is to classify simple black-and-white images of handwritten digits as its value (0-9). The each input observation comes in the form of 784 (28x28) numbers, ranging from 0-255, indicating the intensity of the color at the pixel (0 is no intensity, 255 is full intensity). There are four files: training images, test images, training labels, and test labels. Each is in the form of a data file. The format is very simple and can be found on the website, so it won?t be expanded on here. 
-
-We used a simple Python script to port the data to a CSV file. 
-
+The MNIST dataset (http://yann.lecun.com/exdb/mnist/) is a classic dataset in the field of computer vision. The task is to classify simple black-and-white images of handwritten digits as its value (0-9). The each input observation comes in the form of 784 (28x28) numbers, ranging from 0-255, indicating the intensity of the color at the pixel (0 is no intensity, 255 is full intensity). There are four files: training images, test images, training labels, and test labels. Each is in the form of a data file. The format is very simple and can be found on the website, so it won't be expanded on here. We used a simple Python script to port the data to a CSV file.
 Because the explanatory variables represent individual pixels within different images, it is not really helpful to perform a five number summary. 
 
 \section{Preprocessing}
@@ -112,6 +108,7 @@ The d and the r refer to data and reference. So, the numbers running along the t
 	\bigskip
 	Test Set Confusion Matrix
 	\end{center}
+	\textrm{ }\\
 \end{minipage}	
 We wondered if we could improve upon our error if we changed the arbitrary value of 1000 we initially chose. So, we wrote a function that takes in the value of for which the sum of pixels in the training set needs to be greater than and returns the test and training errors.\\\\
 \begin{minipage}{.25\textwidth}
@@ -226,8 +223,7 @@ Is there another way to use lda to classify the variables? Since even using the 
 The test error is so high because the group means shown above are so close to each other. This is also reflected in the confusion matrix, not one observation in the test set was classified as either a 4 or 5. While some numbers, such as one, were consistently correctly classified due to its unique pixel count, there were too many numbers that had a pixel count of around 140, which led to severe misclassification.
 
 \section{KNN}
-In contrast with other methods for machine learning, KNN is a form of lazy classification. That is, it defers all computation to the testing phase. In fact, there is no training phase; all the work is done upon testing an image, whereupon the $k$ closest neighbors are computed, and the test image is classified most frequently occurring class. Proximity, in our implementation, is simply $n$-dimensional Euclidian distance.
-
+In contrast with other methods for machine learning, KNN is a form of lazy classification. That is, it defers all computation to the testing phase. In fact, there is no training phase; all the work is done upon testing an image, whereupon the $k$ closest neighbors are computed, and the test image is classified most frequently occurring class. Proximity, in our implementation, is simply $n$-dimensional Euclidian distance.\\\\
 For such a large dataset, especially for a manual implementation, it was important to bear in mind the complexity of the computation. Our essential code, the part that actually executes KNN, is as follows. 
 
 \begin{verbatim}
@@ -239,19 +235,14 @@ knn <- function (input, k = 7) {
   indices = order(distances)[1:k]
   votes = train[indices, 1]
   prediction = strtoi(names(which.max(table(votes))))
-  return (prediction)
+  return (prediction)\\\\
 }
 \end{verbatim}
-
-
-As input to our function, we take input, a 784 dimensional vector of pixel intensities, along with an optional $k$ value, which defaults to 7 (reducing the chance of ties, as most ambiguous digits are between two possibilities, such as 4 and 9, 3 and 8, etc). 
-
-In the first line of the function, we take advantage of the built-in R "sweep" function. The variable "arr" is a 60000$\times$784 matrix, where the $i$-th row is the 784 dimensional vector representing the pixel intensities of the $i$-th training observation. In essence, the "sweep" function applies a given function, in this case subtraction (hence the "-"), along a given axis, in this case vertically (hence the 2), on each row of a given matrix, in this case "arr", by a given vector, in this case our input. The result, then, is a 60000$\times$784 matrix, where the $i$-th row is the 784 dimensional vector representing the differences in pixel intensities between the $i$-th training observation and the test observation. The next line squares the matrix element-wise, and the following one collapses the matrix into a 60000 dimensional vector by summing each row. With three short lines, then, we have arrived at the squared distance from the test input to each training point. Since the square root function is monotonically increasing and only the order of the distances is relevant, it is unnecessary to take the computationally expensive step of taking the square root. 
-
-Next, we use the R function "order" to sort the distances from least to greatest, and take the first $k$ of them (hence the [1:k]). We then convert it into a table, with "table(votes)", then take the most frequent appearance, with "which.max". After some simple parsing, we return our prediction. 
-
-With this implementation of KNN and choice of $k$, we arrive at a test error rate of 3\%. The confusion matrix is as follows. 
- 
+As input to our function, we take input, a 784 dimensional vector of pixel intensities, along with an optional $k$ value, which defaults to 7 (reducing the chance of ties, as most ambiguous digits are between two possibilities, such as 4 and 9, 3 and 8, etc). \\\\
+In the first line of the function, we take advantage of the built-in R "sweep" function. The variable "arr" is a 60000$\times$784 matrix, where the $i$-th row is the 784 dimensional vector representing the pixel intensities of the $i$-th training observation. In essence, the "sweep" function applies a given function, in this case subtraction (hence the "-"), along a given axis, in this case vertically (hence the 2), on each row of a given matrix, in this case "arr", by a given vector, in this case our input. The result, then, is a 60000$\times$784 matrix, where the $i$-th row is the 784 dimensional vector representing the differences in pixel intensities between the $i$-th training observation and the test observation. The next line squares the matrix element-wise, and the following one collapses the matrix into a 60000 dimensional vector by summing each row. With three short lines, then, we have arrived at the squared distance from the test input to each training point. Since the square root function is monotonically increasing and only the order of the distances is relevant, it is unnecessary to take the computationally expensive step of taking the square root. \\\\
+Next, we use the R function "order" to sort the distances from least to greatest, and take the first $k$ of them (hence the [1:k]). We then convert it into a table, with "table(votes)", then take the most frequent appearance, with "which.max". After some simple parsing, we return our prediction. \\\\
+With this implementation of KNN and choice of $k$, we arrive at a test error rate of 3\%. The confusion matrix is as follows.
+\begin{center}
 \begin{minipage}{.6\textwidth}
 	\begin{center}
 	\begin{tabular}{c | c c c c c c c c c c}
@@ -270,10 +261,10 @@ With this implementation of KNN and choice of $k$, we arrive at a test error rat
 	\bigskip
 	Test Set Confusion Matrix
 	\end{center}
-\end{minipage}\\
-
-As is surprisingly human, the principal misclassifications are misclassifying 7's as 1's, 4's as 9's, 2's as 7's and 8's as 3's or 5's. Interestingly, their converses are generally far more accurate. 
-
+	\textrm{ }
+\end{minipage}
+\end{center}
+As is surprisingly human, the principal misclassifications are misclassifying 7's as 1's, 4's as 9's, 2's as 7's and 8's as 3's or 5's. Interestingly, their converses are generally far more accurate. \\\\
 The main drawback to KNN is the runtime complexity. After all, even with our vectorized approach (using the sweep method), our algorithm runs with complexity $O(784n)$, which, in this case, translated to taking ~5 seconds to classify a single digit, far inferior to human speeds. 
 
 
@@ -331,15 +322,10 @@ Another problem with random forests is that it treated our classes as continuous
  9&2&5&5&3&8&7&0&3&0&3
  \end{tabular}
 \end{minipage}
-
-
 \section{Conclusion}
 For LDA, our results of 25\% test error is quite decent for our methods. The main roadblock to LDA was complexity: matrix inversion, which is at the core of LDA, is a computationally expensive routine, so we were forced to use a smaller dataset than possible. Even then, the training phase was sluggish. However, the test phase was instantaneous, in contrast to KNN, but at the cost of a slightly lowered accuracy. \\\\
 For KNN, the findings were essentially opposites of LDA. Our test error was uncannily accurate, with a mere 3\% error rate, and this method requires no training phase. However, its drawback was an extremely sluggish test speed. Of course, reducing the training size could have sped it it up at the cost of accuracy, harkening back to the classic speed-performance tradeoff. \\\\
 For random forests, we arrived at the conclusion that this method is simply ineffective for dealing with our task. Since classifying images involves so many predictors, the tree that the algorithm arrives at is cluttered and nonsensical. Our test error was 90\%, no better than a random guess, despite a training error of 54\%. 
-
-
-
 
 \end{document}
 
