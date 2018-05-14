@@ -9,11 +9,13 @@
 \usepackage{enumitem}
 \usepackage{tabularx}
 \usepackage{array}
+\usepackage{subcaption}
+\usepackage{float}
 
 \DeclareDocumentCommand{\start}{ O{Kevin Shao \& Jeffrey Cheng} m m m }{#1\\#2\\#3\\#4}
 \DeclareDocumentCommand{\blank}{}{\textrm{ }}
 
-\title{Multiple Methods of Classification in R:\\ Classifying Handwritten Numbers 0-9\\\textrm{ }\\\large Regression and Machine Learning F}
+\title{Multiple Methods of Classification in R:\\ Classifying Handwritten Numbers 0-9\\\textrm{ }\\\large Regression and Machine Learning}
 \date{14 May 2018}
 \author{Kevin Shao \& Jeffrey Cheng}
 
@@ -36,13 +38,12 @@
 
 \section{Abstract}
 
-The MNIST dataset (http://yann.lecun.com/exdb/mnist/) is a classic dataset in the field of computer vision. The task is to classify simple black-and-white images of handwritten digits as its value (0-9). The each input observation comes in the form of 784 (28x28) numbers, ranging from 0-255, indicating the intensity of the color at the pixel (0 is no intensity, 255 is full intensity). There are four files: training images, test images, training labels, and test labels. Each is in the form of a data file. The format is very simple and can be found on the website, so it won't be expanded on here. We used a simple Python script to port the data to a CSV file.
+The MNIST dataset (http://yann.lecun.com/exdb/mnist/) is a classic dataset in the field of computer vision. The task is to classify simple black-and-white images of handwritten digits as its value (0-9). The each input observation comes in the form of 784 (28x28) numbers, ranging from 0-255, indicating the intensity of the color at the pixel (0 is white, 255 is black). There are four files: training images, test images, training labels, and test labels. Each is in the form of a data file. The format is very simple and can be found on the website, so it won't be expanded on here. We used a simple Python script to port the data to a CSV file.
 Because the explanatory variables represent individual pixels within different images, it is not really helpful to perform a five number summary. 
 
 \section{Preprocessing}
 
 Aside from porting to CSV format, there was not much general preprocessing to be done. Most of the data processing was specific to each classification method. Our training data set consisted of 59999 observations while our test set had 9999 observations. All observations had 785 columns, the first column begin the true number followed by the rest of the pixel data. An example of each number is shown below:
-
 \begin{center}
 	\begin{tabular}{c c c c c c c c c c}
 		\includegraphics{zero.png} & \includegraphics{one.png} & \includegraphics{two.png} 
@@ -51,7 +52,6 @@ Aside from porting to CSV format, there was not much general preprocessing to be
 		\includegraphics{nine.png}
 	\end{tabular} 
 \end{center}
-
 \section{LDA}
 
 There were two main problems when attempting to do LDA on the dataset. Firstly, since the training and test sets are so big, the time it would take R to complete the LDA classification would be substantially long. Thus to counteract this problem, we took a small subset of our training and test sets. Since they were already randomized, there is no need to take a random sample, thus we took the first 2000 observations of the training set and the first 500 observations of the test set.\\\\
@@ -62,7 +62,7 @@ The second problem is that some of the pixels remain white through all the image
 		0.041 & 0.246
 	\end{tabular}\\
 \end{center}
-\begin{minipage}{.6\textwidth}
+\begin{minipage}{.55\textwidth}
 	\begin{center}
 	\begin{tabular}{c | c c c c c c c c c c}
 		d \textbackslash r&0&1&2&3&4&5&6&7&8&9\\ \hline
@@ -76,16 +76,19 @@ The second problem is that some of the pixels remain white through all the image
 		7&0&0&1&1&0&0&0&210&0&3\\
 		8&3&2&3&0&1&2&0&0&165&2\\
 		9&0&1&1&3&6&1&0&7&1&198
-	\end{tabular}
-	\bigskip 
+	\end{tabular}\\
+	\bigskip
 	Training Set Confusion Matrix
 	\end{center}
 \end{minipage}
-\begin{minipage}{.4\textwidth}
+\begin{minipage}{.09\textwidth}
+	\quad
+\end{minipage}	
+\begin{minipage}{.35\textwidth}
 The d and the r refer to data and reference. So, the numbers running along the top of the matrix are the true numbers while the numbers along the left are what lda predicts. There are no consistent errors in the data set. The greatest errors come from confusing 4s with 9s, a task not teachers can consistently get right (for all those times that Dr. Brown couldn't read my handwriting).
 \end{minipage}\\
 \begin{minipage}{.45\textwidth}
-	It is interesting how much lower the test error is than the training error. We thought this was due to the fact that the lda model that we created was still more tailored to the training set we created. If our training set were bigger, the discrepancy between training and test error would decrease. Nonetheless, the both errors we got, were much lower than the 90\% error we would obtain from randomly classifying.
+	It is interesting how much lower the traing error is than the test error. We thought this was due to the fact that the lda model that we created was still more tailored to the training set we created. If our training set were bigger, the discrepancy between training and test error would decrease. Nonetheless, the both errors we got, were much lower than the 90\% error we would obtain from randomly classifying.
 \end{minipage}
 \begin{minipage}{.05\textwidth}
 	\quad
@@ -109,10 +112,10 @@ The d and the r refer to data and reference. So, the numbers running along the t
 	Test Set Confusion Matrix
 	\end{center}
 \end{minipage}	
-We wondered if we could improve upon our error if we changed the arbitrary value of 1000 we initially chose. So, we wrote a function that takes in the value of for which the sum of pixels in the training set needs to be greater than and returns the test and training errors.\\\\
+We wondered if we could improve upon our error if we changed the arbitrary value of 1000 we initially chose. So, we wrote a function that takes in the value of for which the sum of pixels in the training set needs to be greater than and returns the test and training errors.\\\\\\
 \begin{minipage}{.25\textwidth}
 	\begin{tabular}{c c c}
-		n & Training & Test\\ \hline
+		sum & Training & Test\\ \hline
 		50&0.0340&0.274\\
 		100&0.0340&0.272\\
 		150&0.0335&0.264\\
@@ -127,7 +130,7 @@ We wondered if we could improve upon our error if we changed the arbitrary value
 \end{minipage}
 \begin{minipage}{.25\textwidth}
 	\begin{tabular}{c c c}
-		n & Training & Test\\ \hline
+		sum & Training & Test\\ \hline
 		550&0.0365&0.240\\
 		600&0.0390&0.243\\
 		650&0.0385&0.245\\
@@ -142,7 +145,7 @@ We wondered if we could improve upon our error if we changed the arbitrary value
 \end{minipage}
 \begin{minipage}{.25\textwidth}
 	\begin{tabular}{c c c}
-		n & Training & Test\\ \hline
+		sum & Training & Test\\ \hline
 		1050&0.0400&0.240\\
 		1100&0.0400&0.244\\
 		1150&0.0405&0.246\\
@@ -157,7 +160,7 @@ We wondered if we could improve upon our error if we changed the arbitrary value
 \end{minipage}
 \begin{minipage}{.25\textwidth}
 	\begin{tabular}{c c c}
-		n & Training & Test\\ \hline
+		sum & Training & Test\\ \hline
 		1550&0.0425&0.238\\
 		1600&0.0435&0.238\\
 		1650&0.0435&0.234\\
@@ -169,8 +172,8 @@ We wondered if we could improve upon our error if we changed the arbitrary value
 		1950&0.0450&0.232\\
 		2000&0.0455&0.230
 	\end{tabular}
-\end{minipage}\\\\
-The bolded text represents the n = 1000 that we initially chose. There is a clear trend, the lower the n, which in turn represents less columns being discarded thus leading to a greater number of explanatory variables, the lower the training error. However, while the test error has a less linear trend, the general trend is the exact opposite of the training error. This makes sense since we are only using the most important explanatory variables when n is larger.\\\\
+\end{minipage}\\\\\\
+The bolded text represents the (sum = 1000) that we initially chose. There is an interesting trend, as sum increases, training error increases while test error decreases. This can be explained by thinking about how sum is related to the number of explanatory variables. As sum increases, the required sum for the total colored pixels increases, thus we are more exclusive in choosing explanatory variables. In essence, as sum increases, the number of explanatory variables decreases. This would explain why a large number of explanatory variables (low sum) has a low training error, the more explanatory variables the better. However, this does not hold true for test error. Since the test set is a whole new dataset, using the more important variables (greater sum) would result in a lower test error, as shown by the data.\\\\
 Is there another way to use lda to classify the variables? Since even using the reduced number of variables takes a long time for R to process, we wondered if the total number of colored pixels was related to the true number. After all, some numbers can be written using less pixels (read: ink) than others. Thus, we took a slightly larger training and test set, 10000 and 2500, respectively, and ran lda on the data.\\\\
 \begin{minipage}{.45\textwidth}
 \begin{center}
@@ -218,8 +221,8 @@ Is there another way to use lda to classify the variables? Since even using the 
 	\bigskip
 	Test Set Confusion Matrix
 	\end{center}
-	\textrm{ }\\
-\end{minipage}\\\\
+	\textrm{ }
+\end{minipage}
 The test error is so high because the group means shown above are so close to each other. This is also reflected in the confusion matrix, not one observation in the test set was classified as either a 4 or 5. While some numbers, such as one, were consistently correctly classified due to its unique pixel count, there were too many numbers that had a pixel count of around 140, which led to severe misclassification.
 
 \section{QDA} %TODO: OVER HERE
@@ -314,7 +317,7 @@ With this implementation of KNN and choice of $k$, we arrive at a test error rat
 	5& 1 & 0 & 0 & 12 & 0 & 866 & 2 & 0 & 12 & 4\\
 	6& 2 & 0 & 2 & 1 & 5 & 4 & 944 & 0 & 1 & 1\\
 	7& 1 & 0 & 16 & 7 & 1 & 1 & 0 & 988 & 6 & 11\\
-	8& 0 & 0 & 4 & 4 & 1 & 2 & 0 & 0 & 2916 & 2\\
+	8& 0 & 0 & 4 & 4 & 1 & 2 & 0 & 0 & 916 & 2\\
 	9& 0 & 0 & 0 & 4 & 21 & 4 & 0 & 10 & 5 & 963
 	\end{tabular}\\
 	\bigskip
@@ -334,8 +337,8 @@ We needed to change the names of the variables since randomForest cannot read a 
 The extremely dense formatting of the boxes aside, we only need to look at the topmost split to show why random forest is a terrible way to classify our data. The first split occurs at 14.18, and begins the classification based on the color of that pixel. Essentially, all the splits are performed by looking at the greyscaling of a \textbf{specific} pixel. Even if the training error happened to be low, if each number that was drawn was just shifted one pixel over, then the entire model would fail. The only feasible way for this model to work is to take each image, crop all the whitespace around it, rescale it back to size and give it artificial greyscaling, so the position and size of each image would match the others. However, this is next to impossible, which makes using a different classification method the better approach.\\\\
 \begin{minipage}{.55\textwidth}
 \begin{center}
-\begin{tabular}{c c c c c c c c c c c}
-	 d\textbackslash r&0& 1& 2& 3& 4& 5& 6& 7& 8& 9\\
+\begin{tabular}{c | c c c c c c c c c c}
+	 d\textbackslash r&0& 1& 2& 3& 4& 5& 6& 7& 8& 9\\ \hline
 	 0&70& 0& 0& 0& 0& 0& 0& 0& 0& 0\\
 	 1&65 &154& 0& 0& 0& 0& 1& 0& 0& 1\\
 	 2&31&45&64& 3& 0& 0& 1& 2& 0& 1\\
@@ -367,8 +370,8 @@ Another problem with random forests is that it treated our classes as continuous
 	\quad
 \end{minipage}
 \begin{minipage}{.4\textwidth}
-\begin{tabular}{c c c c c c c c c c c}
- d\textbackslash r&0&1&2&3&4&5&6&7&8&9\\
+\begin{tabular}{c | c c c c c c c c c c}
+ d\textbackslash r&0&1&2&3&4&5&6&7&8&9\\ \hline
  0&3&2&6&3&5&1&5&2&3&5\\
  1&5&10&5&13&7&9&2&5&8&7\\
  2&2&6&2&5&6&6&3&5&3&5\\
@@ -381,14 +384,33 @@ Another problem with random forests is that it treated our classes as continuous
  9&2&5&5&3&8&7&0&3&0&3
  \end{tabular}
 \end{minipage}
+
+\section {Interesting (Mis)classifications}
+
+In this section, we will present interesting cases where KNN, our most accurate classifier, failed to correctly identify the digit. Interestingly, from a human perspective, many of these misclassifications are somewhat understandable.
+
+\begin{table}[H]
+\begin{tabular}{c c}
+\begin{subfigure}{0.4\textwidth}\centering\includegraphics[scale = .25]{../Images/358.png}\caption{Case 358: Classified as 4, truth is 7.}\label{fig:taba}\end{subfigure}&
+\begin{subfigure}{0.4\textwidth}\centering\includegraphics[scale = .25]{../Images/445.png}\caption{Case 445: Classified as 0, truth is 6.}\label{fig:taba}\end{subfigure}\\
+\newline
+\begin{subfigure}{0.4\textwidth}\centering\includegraphics[scale = .25]{../Images/551.png}\caption{Case 551: Classified as 1, truth is 7.}\label{fig:taba}\end{subfigure}&
+\begin{subfigure}{0.4\textwidth}\centering\includegraphics[scale = .25]{../Images/583.png}\caption{Case 583: Classified as 7, truth is 2.}\label{fig:taba}\end{subfigure}\\
+\newline
+\begin{subfigure}{0.4\textwidth}\centering\includegraphics[scale = .25]{../Images/646.png}\caption{Case 646: Classified as 6, truth is 2.}\label{fig:taba}\end{subfigure}&
+\begin{subfigure}{0.4\textwidth}\centering\includegraphics[scale = .25]{../Images/740.png}\caption{Case 740: Classified as 9, truth is 4.}\label{fig:taba}\end{subfigure}\\
+\newline
+\begin{subfigure}{0.4\textwidth}\centering\includegraphics[scale = .25]{../Images/947.png}\caption{Case 947: Classified as 9, truth is 8.}\label{fig:taba}\end{subfigure}&
+\begin{subfigure}{0.4\textwidth}\centering\includegraphics[scale = .25]{../Images/965.png}\caption{Case 965: Classified as 0, truth is 6.}\label{fig:taba}\end{subfigure}
+\end{tabular}
+\end{table}
+
 \section{Conclusion}
 For LDA, our results of 25\% test error is quite decent for our methods. The main roadblock to LDA was complexity: matrix inversion, which is at the core of LDA, is a computationally expensive routine, so we were forced to use a smaller dataset than possible. Even then, the training phase was sluggish. However, the test phase was instantaneous, in contrast to KNN, but at the cost of a slightly lowered accuracy. \\\\
 For QDA, our results were similar to LDA, but all our errors were lower. The training error of 3\% is almost on par with that of KNN, and the test error does not lag behind by much more at 10\%. The major downside to using QDA was that it required a large number of observations, which took more time for R to process.\\\\
 For KNN, the findings were essentially opposites of LDA. Our test error was uncannily accurate, with a mere 3\% error rate, and this method requires no training phase. However, its drawback was an extremely sluggish test speed. Of course, reducing the training size could have sped it it up at the cost of accuracy, harkening back to the classic speed-performance tradeoff. \\\\
 For random forests, we arrived at the conclusion that this method is simply ineffective for dealing with our task. Since classifying images involves so many predictors, the tree that the algorithm arrives at is cluttered and nonsensical. Our test error was 90\%, no better than a random guess, despite a training error of 54\%. 
-
 \end{document}
-
 
 
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2017.11.28)  13 MAY 2018 23:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2017.11.28)  14 MAY 2018 16:25
 entering extended mode
 **"./Project 2.tex"
 ("Project 2.tex"
@@ -697,47 +697,125 @@ Package: array 2016/10/06 v2.4d Tabular extension package (FMi)
 \TX@cols=\count194
 \TX@ftn=\toks26
 )
+("C:\Users\imjef\AppData\Local\Programs\MiKTeX 2.9\tex\latex\caption\subcaption
+.sty"
+Package: subcaption 2016/05/22 v1.1-161 Sub-captions (AR)
+
+("C:\Users\imjef\AppData\Local\Programs\MiKTeX 2.9\tex\latex\caption\caption.st
+y"
+Package: caption 2016/02/21 v3.3-144 Customizing captions (AR)
+
+("C:\Users\imjef\AppData\Local\Programs\MiKTeX 2.9\tex\latex\caption\caption3.s
+ty"
+Package: caption3 2016/05/22 v1.7-166 caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 67.
+\captionmargin=\dimen164
+\captionmargin@=\dimen165
+\captionwidth=\dimen166
+\caption@tempdima=\dimen167
+\caption@indent=\dimen168
+\caption@parindent=\dimen169
+\caption@hangindent=\dimen170
+)
+\c@ContinuedFloat=\count195
+Package caption Info: wrapfig package is loaded.
+)
+\c@subfigure=\count196
+\c@subtable=\count197
+)
+("C:\Users\imjef\AppData\Local\Programs\MiKTeX 2.9\tex\latex\float\float.sty"
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count198
+\float@exts=\toks27
+\float@box=\box46
+\@float@everytoks=\toks28
+\@floatcapt=\box47
+)
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
 . Defining command \start with sig. ' O{Kevin Shao \& Jeffrey Cheng} m m m '
-. on line 13.
+. on line 15.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \blank with sig. '' on line 14.
+. Defining command \blank with sig. '' on line 16.
 .................................................
- ("Project 2.aux")
+
+("Project 2.aux"
+
+LaTeX Warning: Label `fig:taba' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:taba' multiply defined.
+
+
+LaTeX Warning: Label `fig:taba' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:taba' multiply defined.
+
+
+LaTeX Warning: Label `fig:taba' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:taba' multiply defined.
+
+
+LaTeX Warning: Label `fig:taba' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:taba' multiply defined.
+
+
+LaTeX Warning: Label `fig:taba' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:taba' multiply defined.
+
+
+LaTeX Warning: Label `fig:taba' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:taba' multiply defined.
+
+
+LaTeX Warning: Label `fig:taba' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:taba' multiply defined.
+
+)
 \openout1 = `"Project 2.aux"'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
 
 ("C:\Users\imjef\AppData\Local\Programs\MiKTeX 2.9\tex\context\base\supp-pdf.mk
 ii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count195
-\scratchdimen=\dimen164
-\scratchbox=\box46
-\nofMPsegments=\count196
-\nofMParguments=\count197
-\everyMPshowfont=\toks27
-\MPscratchCnt=\count198
-\MPscratchDim=\dimen165
-\MPnumerator=\count199
-\makeMPintoPDFobject=\count266
-\everyMPtoPDFconversion=\toks28
+\scratchcounter=\count199
+\scratchdimen=\dimen171
+\scratchbox=\box48
+\nofMPsegments=\count266
+\nofMParguments=\count267
+\everyMPshowfont=\toks29
+\MPscratchCnt=\count268
+\MPscratchDim=\dimen172
+\MPnumerator=\count269
+\makeMPintoPDFobject=\count270
+\everyMPtoPDFconversion=\toks30
 )
 ("C:\Users\imjef\AppData\Local\Programs\MiKTeX 2.9\tex\latex\oberdiek\epstopdf-
 base.sty"
@@ -831,12 +909,15 @@ G,.JBIG2,.JB2,.eps]
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: float package is loaded.
+Package caption Info: End \AtBeginDocument code.
 <numbers.png, id=1, 630.355pt x 650.43pt>
 File: numbers.png Graphic file (type png)
 <use numbers.png>
-Package pdftex.def Info: numbers.png  used on input line 27. on input line 27.
+Package pdftex.def Info: numbers.png  used on input line 29. on input line 29.
 Package pdftex.def Info: Requested size: 315.17673pt x 325.2142pt on input line
- 27.
+ 29.
 [1
 
 {C:/Users/imjef/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <./numbers.p
@@ -844,63 +925,63 @@ ng>]
 <zero.png, id=9, 14.0525pt x 14.0525pt>
 File: zero.png Graphic file (type png)
 <use zero.png>
-Package pdftex.def Info: zero.png  used on input line 48. on input line 48.
+Package pdftex.def Info: zero.png  used on input line 49. on input line 49.
 Package pdftex.def Info: Requested size: 14.05246pt x 14.05246pt on input line 
-48.
+49.
 <one.png, id=11, 14.0525pt x 14.0525pt>
 File: one.png Graphic file (type png)
 <use one.png>
-Package pdftex.def Info: one.png  used on input line 48. on input line 48.
+Package pdftex.def Info: one.png  used on input line 49. on input line 49.
 Package pdftex.def Info: Requested size: 14.05246pt x 14.05246pt on input line 
-48.
+49.
 <two.png, id=12, 14.0525pt x 14.0525pt>
 File: two.png Graphic file (type png)
 <use two.png>
-Package pdftex.def Info: two.png  used on input line 48. on input line 48.
+Package pdftex.def Info: two.png  used on input line 49. on input line 49.
 Package pdftex.def Info: Requested size: 14.05246pt x 14.05246pt on input line 
-48.
+49.
 <three.png, id=13, 14.0525pt x 14.0525pt>
 File: three.png Graphic file (type png)
 <use three.png>
-Package pdftex.def Info: three.png  used on input line 49. on input line 49.
+Package pdftex.def Info: three.png  used on input line 50. on input line 50.
 Package pdftex.def Info: Requested size: 14.05246pt x 14.05246pt on input line 
-49.
+50.
 <four.png, id=14, 14.0525pt x 14.0525pt>
 File: four.png Graphic file (type png)
 <use four.png>
-Package pdftex.def Info: four.png  used on input line 49. on input line 49.
+Package pdftex.def Info: four.png  used on input line 50. on input line 50.
 Package pdftex.def Info: Requested size: 14.05246pt x 14.05246pt on input line 
-49.
+50.
 <five.png, id=15, 14.0525pt x 14.0525pt>
 File: five.png Graphic file (type png)
 <use five.png>
-Package pdftex.def Info: five.png  used on input line 49. on input line 49.
+Package pdftex.def Info: five.png  used on input line 50. on input line 50.
 Package pdftex.def Info: Requested size: 14.05246pt x 14.05246pt on input line 
-49.
+50.
 <six.png, id=16, 14.0525pt x 14.0525pt>
 File: six.png Graphic file (type png)
 <use six.png>
-Package pdftex.def Info: six.png  used on input line 50. on input line 50.
+Package pdftex.def Info: six.png  used on input line 51. on input line 51.
 Package pdftex.def Info: Requested size: 14.05246pt x 14.05246pt on input line 
-50.
+51.
 <seven.png, id=17, 14.0525pt x 14.0525pt>
 File: seven.png Graphic file (type png)
 <use seven.png>
-Package pdftex.def Info: seven.png  used on input line 50. on input line 50.
+Package pdftex.def Info: seven.png  used on input line 51. on input line 51.
 Package pdftex.def Info: Requested size: 14.05246pt x 14.05246pt on input line 
-50.
+51.
 <eight.png, id=18, 14.0525pt x 14.0525pt>
 File: eight.png Graphic file (type png)
 <use eight.png>
-Package pdftex.def Info: eight.png  used on input line 50. on input line 50.
+Package pdftex.def Info: eight.png  used on input line 51. on input line 51.
 Package pdftex.def Info: Requested size: 14.05246pt x 14.05246pt on input line 
-50.
+51.
 <nine.png, id=19, 14.0525pt x 14.0525pt>
 File: nine.png Graphic file (type png)
 <use nine.png>
-Package pdftex.def Info: nine.png  used on input line 51. on input line 51.
+Package pdftex.def Info: nine.png  used on input line 52. on input line 52.
 Package pdftex.def Info: Requested size: 14.05246pt x 14.05246pt on input line 
-51.
+52.
 LaTeX Font Info:    Try loading font information for OMS+cmr on input line 68.
 
 ("C:\Users\imjef\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\omscmr.fd"
@@ -909,81 +990,140 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 68.
 
-Overfull \hbox (2.2222pt too wide) in paragraph at lines 65--224
-$[]$ $[]$ 
+Overfull \hbox (21.965pt too wide) in paragraph at lines 67--79
+ [] 
  []
 
 
-Overfull \hbox (4.4444pt too wide) in paragraph at lines 65--224
+Overfull \hbox (4.4444pt too wide) in paragraph at lines 65--227
 []$ $[]$ $[]$
  []
 
 
-Overfull \hbox (6.6666pt too wide) in paragraph at lines 65--224
+Overfull \hbox (6.6666pt too wide) in paragraph at lines 65--227
 []$ $[]$ $[]$ $[]$ 
  []
 
 
-Overfull \hbox (27.51823pt too wide) in paragraph at lines 65--224
-[]$ $[]$ 
+Overfull \hbox (27.51823pt too wide) in paragraph at lines 65--227
+[]$ $[]$
  []
 
 [2 <./zero.png> <./one.png> <./two.png> <./three.png> <./four.png> <./five.png>
  <./six.png> <./seven.png> <./eight.png> <./nine.png>] [3]
-Overfull \hbox (2.2222pt too wide) in paragraph at lines 236--286
+Overfull \hbox (2.2222pt too wide) in paragraph at lines 239--289
 $[]$ $[]$
  []
 
 
-Overfull \hbox (4.45212pt too wide) in paragraph at lines 236--286
+Overfull \hbox (4.45212pt too wide) in paragraph at lines 239--289
 []$ $[]$ $[]$
  []
 
-[4]
-Overfull \hbox (3.33566pt too wide) in paragraph at lines 307--319
- [] 
- []
-
-[5]
+[4] [5]
 <Rplotforest.png, id=42, 1129.21875pt x 486.31688pt>
 File: Rplotforest.png Graphic file (type png)
 <use Rplotforest.png>
-Package pdftex.def Info: Rplotforest.png  used on input line 333. on input line
- 333.
+Package pdftex.def Info: Rplotforest.png  used on input line 336. on input line
+ 336.
 Package pdftex.def Info: Requested size: 508.14375pt x 218.84056pt on input lin
-e 333.
+e 336.
 
-Overfull \hbox (19.11958pt too wide) in paragraph at lines 370--383
+Overfull \hbox (19.51958pt too wide) in paragraph at lines 373--386
 [][] 
  []
 
 
-Overfull \hbox (2.25375pt too wide) in paragraph at lines 332--384
+Overfull \hbox (2.25375pt too wide) in paragraph at lines 335--387
 [] 
  []
 
-[6 <./Rplotforest.png>] [7] ("Project 2.aux") ) 
+[6 <./Rplotforest.png>]
+<../Images/358.png, id=47, 481.8pt x 481.8pt>
+File: ../Images/358.png Graphic file (type png)
+<use ../Images/358.png>
+Package pdftex.def Info: ../Images/358.png  used on input line 393. on input li
+ne 393.
+Package pdftex.def Info: Requested size: 120.44969pt x 120.44969pt on input lin
+e 393.
+<../Images/445.png, id=48, 481.8pt x 481.8pt>
+File: ../Images/445.png Graphic file (type png)
+<use ../Images/445.png>
+Package pdftex.def Info: ../Images/445.png  used on input line 394. on input li
+ne 394.
+Package pdftex.def Info: Requested size: 120.44969pt x 120.44969pt on input lin
+e 394.
+<../Images/551.png, id=49, 481.8pt x 481.8pt>
+File: ../Images/551.png Graphic file (type png)
+<use ../Images/551.png>
+Package pdftex.def Info: ../Images/551.png  used on input line 396. on input li
+ne 396.
+Package pdftex.def Info: Requested size: 120.44969pt x 120.44969pt on input lin
+e 396.
+<../Images/583.png, id=50, 481.8pt x 481.8pt>
+File: ../Images/583.png Graphic file (type png)
+<use ../Images/583.png>
+Package pdftex.def Info: ../Images/583.png  used on input line 397. on input li
+ne 397.
+Package pdftex.def Info: Requested size: 120.44969pt x 120.44969pt on input lin
+e 397.
+<../Images/646.png, id=51, 481.8pt x 481.8pt>
+File: ../Images/646.png Graphic file (type png)
+<use ../Images/646.png>
+Package pdftex.def Info: ../Images/646.png  used on input line 399. on input li
+ne 399.
+Package pdftex.def Info: Requested size: 120.44969pt x 120.44969pt on input lin
+e 399.
+<../Images/740.png, id=52, 481.8pt x 481.8pt>
+File: ../Images/740.png Graphic file (type png)
+<use ../Images/740.png>
+Package pdftex.def Info: ../Images/740.png  used on input line 400. on input li
+ne 400.
+Package pdftex.def Info: Requested size: 120.44969pt x 120.44969pt on input lin
+e 400.
+<../Images/947.png, id=53, 481.8pt x 481.8pt>
+File: ../Images/947.png Graphic file (type png)
+<use ../Images/947.png>
+Package pdftex.def Info: ../Images/947.png  used on input line 402. on input li
+ne 402.
+Package pdftex.def Info: Requested size: 120.44969pt x 120.44969pt on input lin
+e 402.
+<../Images/965.png, id=54, 481.8pt x 481.8pt>
+File: ../Images/965.png Graphic file (type png)
+<use ../Images/965.png>
+Package pdftex.def Info: ../Images/965.png  used on input line 403. on input li
+ne 403.
+Package pdftex.def Info: Requested size: 120.44969pt x 120.44969pt on input lin
+e 403.
+ [7] [8 <../Images/358.png> <../Images/445.png> <../Images/551.png> <../Images/
+583.png> <../Images/646.png> <../Images/740.png> <../Images/947.png> <../Images
+/965.png>] [9] ("Project 2.aux")
+
+LaTeX Warning: There were multiply-defined labels.
+
+ ) 
 Here is how much of TeX's memory you used:
- 12098 strings out of 493312
- 225390 string characters out of 3129826
- 394629 words of memory out of 3000000
- 15549 multiletter control sequences out of 15000+200000
- 535516 words of font info for 41 fonts, out of 3000000 for 9000
+ 13301 strings out of 493312
+ 247165 string characters out of 3129826
+ 418289 words of memory out of 3000000
+ 16729 multiletter control sequences out of 15000+200000
+ 535815 words of font info for 42 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,10n,35p,10393b,275s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Users/imjef/AppData/Local/Pr
-ograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/imjef/App
-Data/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Us
-ers/imjef/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi
-10.pfb><C:/Users/imjef/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/ams
-fonts/cm/cmr10.pfb><C:/Users/imjef/AppData/Local/Programs/MiKTeX 2.9/fonts/type
-1/public/amsfonts/cm/cmr12.pfb><C:/Users/imjef/AppData/Local/Programs/MiKTeX 2.
-9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/imjef/AppData/Local/Progra
-ms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/imjef/AppData
-/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on "Project 2.pdf" (7 pages, 210275 bytes).
+ 42i,15n,40p,10393b,526s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Users/imjef/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts
+/cm/cmbx10.pfb><C:/Users/imjef/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pu
+blic/amsfonts/cm/cmbx12.pfb><C:/Users/imjef/AppData/Local/Programs/MiKTeX 2.9/f
+onts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/imjef/AppData/Local/Programs
+/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/imjef/AppData/Lo
+cal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/imje
+f/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C
+:/Users/imjef/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
+cmr9.pfb><C:/Users/imjef/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/a
+msfonts/cm/cmsy10.pfb><C:/Users/imjef/AppData/Local/Programs/MiKTeX 2.9/fonts/t
+ype1/public/amsfonts/cm/cmtt10.pfb>
+Output written on "Project 2.pdf" (9 pages, 281861 bytes).
 PDF statistics:
- 77 PDF objects out of 1000 (max. 8388607)
+ 103 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 61 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 101 words of extra memory for PDF output out of 10000 (max. 10000000)
 
