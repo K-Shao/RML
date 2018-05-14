@@ -108,7 +108,6 @@ The d and the r refer to data and reference. So, the numbers running along the t
 	\bigskip
 	Test Set Confusion Matrix
 	\end{center}
-	\textrm{ }\\
 \end{minipage}	
 We wondered if we could improve upon our error if we changed the arbitrary value of 1000 we initially chose. So, we wrote a function that takes in the value of for which the sum of pixels in the training set needs to be greater than and returns the test and training errors.\\\\
 \begin{minipage}{.25\textwidth}
@@ -219,15 +218,75 @@ Is there another way to use lda to classify the variables? Since even using the 
 	\bigskip
 	Test Set Confusion Matrix
 	\end{center}
+	\textrm{ }\\
 \end{minipage}\\\\
 The test error is so high because the group means shown above are so close to each other. This is also reflected in the confusion matrix, not one observation in the test set was classified as either a 4 or 5. While some numbers, such as one, were consistently correctly classified due to its unique pixel count, there were too many numbers that had a pixel count of around 140, which led to severe misclassification.
 
+\section{QDA} %TODO: OVER HERE
+
+QDA is usually more accurate than LDA, but just requires more resources to run. So, we expected both training and test errors for QDA to be lower than that of LDA. Using QDA also gave several errors we had to fix with preprocessing. Firstly, there was the issue that the number of columns exceeded the minimum number of observations for a class. In order to address this issue, we increased the amount of total observations. Instead of a subset of 2000 like in LDA, we took a subset of 20000. The test set increased accordingly as well to 5000.\\\\
+Another issue was that QDA saw that we had too many collinear variables, too many of the variables had zeros. Thus, that number n that we arbitrarily assigned to 1000 in LDA had to increase as well to decrease the number of explanatory variables we had. Even after accounting for the increased sample size, we had to increase n by a factor of 1000, to 1000000 for the QDA to work. Using these new parameters, we got the following values.
+
+\begin{center}
+	\begin{tabular}{c c}
+		Training Error & Test Error\\
+		0.03315 & 0.102
+	\end{tabular}\\
+\end{center}
+\begin{minipage}{.7\textwidth}
+	\begin{center}
+	\begin{tabular}{c | c c c c c c c c c c}
+		d \textbackslash r&0&1&2&3&4&5&6&7&8&9\\ \hline
+		0&1973&0&4&3&2&6&5&1&0&11\\
+		1&0&2148&1&2&0&0&4&0&3&2\\
+		2&7&31&1880&18&13&1&1&35&4&10\\
+		3&2&7&2&1987&0&5&2&6&8&22\\
+		4&0&13&6&1&1896&0&0&19&1&11\\
+		5&6&3&0&12&0&1744&22&3&3&0\\
+		6&0&0&6&0&4&1&1911&0&0&0\\
+		7&1&1&6&6&3&0&0&1983&0&6\\
+		8&5&76&24&41&6&15&26&19&1900&37\\
+		9&0&2&0&6&21&3&0&27&3&1915
+	\end{tabular}\\
+	\bigskip 
+	Training Set Confusion Matrix
+	\end{center}
+	\textrm{ }
+\end{minipage}
+\begin{minipage}{.3\textwidth}
+Right off the bat, we can see that both training and test errors are lower than those of LDA, which is good. Interestingly, the most misclassifications are no longer between 4s and 9s, but rather other random numbers such as 1s and 8s that don't appear to have anything in common at first sight.\\\\
+\end{minipage}
+\begin{minipage}{.35\textwidth}
+	Just like in LDA, the test error is slightly greater than training error. However, we increased the number of observations, and the discrepancy became lower, just as we predicted it would. Otherwise, there are no big discrepancies between the test and training sets.
+\end{minipage}
+\begin{minipage}{.05\textwidth}
+	\quad
+\end{minipage}
+\begin{minipage}{.6\textwidth}
+	\begin{center}
+	\begin{tabular}{c | c c c c c c c c c c}
+		d\textbackslash r & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9\\ \hline
+		0&451&0&4&5&0&8&9&1&3&7\\
+		1&0&537&1&0&0&0&2&2&0&2\\
+		2&3&8&486&12&6&0&7&35&1&7\\
+		3&0&3&9&434&0&15&1&6&19&10\\
+		4&0&1&5&1&463&0&4&14&1&17\\
+		5&1&0&0&14&0&391&12&1&1&1\\
+		6&0&0&2&1&4&1&403&0&0&0\\
+		7&0&0&1&1&2&1&0&411&0&2\\
+		8&5&22&22&30&9&39&24&24&462&22\\
+		9&0&0&0&3&16&1&0&17&2&452\\
+	\end{tabular}\\
+	\bigskip
+	Test Set Confusion Matrix
+	\end{center}
+	\textrm{ }
+\end{minipage}	
+The further analysis we did with LDA holds true here as well, we just did not feel the need to manually input that many tables again to prove the same point.
 \section{KNN}
 In contrast with other methods for machine learning, KNN is a form of lazy classification. That is, it defers all computation to the testing phase. In fact, there is no training phase; all the work is done upon testing an image, whereupon the $k$ closest neighbors are computed, and the test image is classified most frequently occurring class. Proximity, in our implementation, is simply $n$-dimensional Euclidian distance.\\\\
 For such a large dataset, especially for a manual implementation, it was important to bear in mind the complexity of the computation. Our essential code, the part that actually executes KNN, is as follows. 
-
 \begin{verbatim}
-
 knn <- function (input, k = 7) {
   differences = sweep(arr, 2, input, "-", check.margin = FALSE )
   differences = differences * differences
@@ -324,6 +383,7 @@ Another problem with random forests is that it treated our classes as continuous
 \end{minipage}
 \section{Conclusion}
 For LDA, our results of 25\% test error is quite decent for our methods. The main roadblock to LDA was complexity: matrix inversion, which is at the core of LDA, is a computationally expensive routine, so we were forced to use a smaller dataset than possible. Even then, the training phase was sluggish. However, the test phase was instantaneous, in contrast to KNN, but at the cost of a slightly lowered accuracy. \\\\
+For QDA, our results were similar to LDA, but all our errors were lower. The training error of 3\% is almost on par with that of KNN, and the test error does not lag behind by much more at 10\%. The major downside to using QDA was that it required a large number of observations, which took more time for R to process.\\\\
 For KNN, the findings were essentially opposites of LDA. Our test error was uncannily accurate, with a mere 3\% error rate, and this method requires no training phase. However, its drawback was an extremely sluggish test speed. Of course, reducing the training size could have sped it it up at the cost of accuracy, harkening back to the classic speed-performance tradeoff. \\\\
 For random forests, we arrived at the conclusion that this method is simply ineffective for dealing with our task. Since classifying images involves so many predictors, the tree that the algorithm arrives at is cluttered and nonsensical. Our test error was 90\%, no better than a random guess, despite a training error of 54\%. 
 
