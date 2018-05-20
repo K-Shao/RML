@@ -1,0 +1,49 @@
+\documentclass[10pt]{extarticle}
+\usepackage[utf8]{inputenc}
+\usepackage[fleqn]{amsmath}
+\usepackage{lipsum}
+\usepackage{xparse}
+\usepackage{graphicx,wrapfig}
+\usepackage[bottom=1in,top=1in,left=.75in,right=.75in]{geometry}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{array}
+
+
+\DeclareDocumentCommand{\start}{ O{Kevin Shao \& Jeffrey Cheng} m m m }{#1\\#2\\#3\\#4}
+\DeclareDocumentCommand{\blank}{}{\textrm{ }}
+
+\begin{document}
+\noindent
+\start{Mr. Piper}{RML B \& F}{23 May 2018}
+
+\begin{center}
+\LARGE{\textbf{Proposal for Dimension Reduction}}
+\end{center}
+
+\section{Methodology}
+\blank
+
+We had two ideas for dimension reduction of our variables. One was averaging the pixel intensities of the 28x28 image to create a 7x7 with less pixels. Another was simply taking out the pixels that were completely correlated with one another (all intensities were zero for that one pixel for each image in training set). These two methods illustrated above are the "visual" was of thinking about dimensional reduction. Both are a type of PCA, where we essentially take linear combinations of the pixel intensities. However, we also plan to run PCA using R and determine the "mathematical" best way to reduce our dimensions.
+
+\section{Pixel Intensity Averaging}
+\blank
+
+%TODO: Kevin your stuff goes here
+
+\section{Removing Collinear Pixels}
+\blank
+
+%TODO: This one is mine
+
+\section{Mathematical Dimensional Reduction}
+\blank
+
+%TODO: Whoever has time can do this one
+
+\section{Conclusion}
+\blank 
+%TODO: lol
+
+\end{document}
