@@ -35,7 +35,9 @@ We had two ideas for dimension reduction of our variables. One was averaging the
 \section{Removing Collinear Pixels}
 \blank
 
-%TODO: This one is mine
+Removing collinear pixels was pretty simple because we had accomplished this once already when doing lda and qda. Essentially, we are taking a linear combination of the pixels, with each weight being a zero or a one based on whether we decide to remove it or not. In doing this dimension reduction, we are not actually running PCA on the dataset, but rather taking out columns which do not contribute to the overall image as much according to us. Therefore, if the average pixel intensity of a specific pixel over the 59999 training emages is less than 10, we removed the pixel from the reduced training set.\\
+
+We reduced our number of variables down from 784 to 370, which is a significant decrease. The runtime for a test set of 200 images accordingly decreased from 49 seconds to 23 seconds. Interesting enough, we expected an increase in our test error since we included less explanatory variables. However, our test error actually decreased, from 0.04975124 to 0.04477612.
 
 \section{Mathematical Dimensional Reduction}
 \blank
