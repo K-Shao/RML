@@ -36,28 +36,33 @@ for (i in 1:14) {
 
 
 
-test_sub = matrix(nrow = 9999, ncol = 49)
+test_sub = matrix(nrow = 9999, ncol = 50)
+
+test_sub[,1] = test[,1]
+test_sub_long[,1] = test[,1]
+train_sub[,1] = train[,1]
+train_sub_long[,1] = train[,1]
 
 for (i in 1:49) {
-  test_sub[,i] = test[,c(pixel_positions[i]) + 1 ]
+  test_sub[,i+1] = test[,c(pixel_positions[i]) + 1 ]
 }
 
-train_sub = matrix(nrow = 59999, ncol = 49)
+train_sub = matrix(nrow = 59999, ncol = 50)
 
 for (i in 1:49) {
-  train_sub[,i] = train[,c(pixel_positions[i]) + 1]
+  train_sub[,i+1] = train[,c(pixel_positions[i]) + 1]
 }
 
-test_sub_long = matrix(nrow = 9999, ncol = 196)
+test_sub_long = matrix(nrow = 9999, ncol = 197)
 
 for (i in 1:196) {
-  test_sub_long[,i] = test[,c(pixel_positions2[i]) + 1 ]
+  test_sub_long[,i+1] = test[,c(pixel_positions2[i]) + 1 ]
 }
 
-train_sub_long = matrix(nrow = 59999, ncol = 196)
+train_sub_long = matrix(nrow = 59999, ncol = 197)
 
 for (i in 1:196) {
-  train_sub_long[,i] = train[,c(pixel_positions2[i]) + 1]
+  train_sub_long[,i+1] = train[,c(pixel_positions2[i]) + 1]
 }
 
 

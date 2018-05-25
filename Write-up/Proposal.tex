@@ -61,6 +61,47 @@ for (i in 1:196) {
 
 We then created matrices to hold the subsampled train and test data sets, called "train\textunderscore sub" and "test\textunderscore sub", respectively. For each of the 196 \textbf{columns} (hence "test\textunderscore sub[,i]"), we wanted the average of the columns (of test or train) that were given by the i-th entry in our list. The increment at the end of the index serves to eliminate the leading column of the original data, which contains the true value of the image. We now arrive at two matrices of desired content. 
 
+Having attempted reclassification with KNN, we find that a mere 2x2 subsampling is insufficient for meaningful time change. Thus, we modified the program to take 4x4 subsampling as follows, with the same intent: 
+
+\begin{verbatim}
+pixel_positions = matrix(nrow=49, ncol=16)
+for (i in 1:7) {
+  for (j in 1:7) {
+    pixel_positions[i+7*j-7,1] = (i-1)*4 + (j-1)*112 + 1
+    pixel_positions[i+7*j-7,2] = (i-1)*4 + (j-1)*112 + 2
+    pixel_positions[i+7*j-7,3] = (i-1)*4 + (j-1)*112 + 3
+    pixel_positions[i+7*j-7,4] = (i-1)*4 + (j-1)*112 + 4
+    pixel_positions[i+7*j-7,5] = (i-1)*4 + (j-1)*112 + 29
+    pixel_positions[i+7*j-7,6] = (i-1)*4 + (j-1)*112 + 30
+    pixel_positions[i+7*j-7,7] = (i-1)*4 + (j-1)*112 + 31
+    pixel_positions[i+7*j-7,8] = (i-1)*4 + (j-1)*112 + 32
+    pixel_positions[i+7*j-7,9] = (i-1)*4 + (j-1)*112 + 57
+    pixel_positions[i+7*j-7,10] = (i-1)*4 + (j-1)*112 + 58
+    pixel_positions[i+7*j-7,11] = (i-1)*4 + (j-1)*112 + 59
+    pixel_positions[i+7*j-7,12] = (i-1)*4 + (j-1)*112 + 60
+    pixel_positions[i+7*j-7,13] = (i-1)*4 + (j-1)*112 + 85
+    pixel_positions[i+7*j-7,14] = (i-1)*4 + (j-1)*112 + 86
+    pixel_positions[i+7*j-7,15] = (i-1)*4 + (j-1)*112 + 87
+    pixel_positions[i+7*j-7,16] = (i-1)*4 + (j-1)*112 + 88
+  }
+}
+for (i in 1:49) {
+  test_sub[,i+1] = test[,c(pixel_positions[i]) + 1 ]
+}
+
+train_sub = matrix(nrow = 59999, ncol = 50)
+
+for (i in 1:49) {
+  train_sub[,i+1] = train[,c(pixel_positions[i]) + 1]
+}
+\end{verbatim}
+
+Then, re-running the KNN classification code, we find a massive speed boost. Whereas the original would take 5-6 seconds to classify each case, the reduced images can be classified at an average rate of 3 per second, a 15-fold increase in speed. 
+
+Unfortunately, by subsampling so much, we inevitably lose data, and with it, accuracy. Classifying it with the same KNN algorithm, with the same $k$ parameter of 7, we get a test error of 18.60\%, 6 times as much as the original. 
+
+
+
 
 \section{Removing Collinear Pixels}
 \blank
