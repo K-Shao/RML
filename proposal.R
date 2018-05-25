@@ -28,11 +28,11 @@ testlabel = rawtest[,1]
 ktrain = subset(rawtrain,select= -c(1))
 ktest = subset(rawtest,select= -c(1))
 
-ktest = ktest[c(1:200),]
+ktest = ktest[c(400:600),]
 
 knnpredict = knn(train = ktrain, test = ktest, cl = trainlabel, k=5)
 
-check = data.frame(knnpredict,testlabel[c(1:200)])
+check = data.frame(knnpredict,testlabel[c(400:600)])
 
 names(check) = c('Predicted','Actual')
 
@@ -76,18 +76,15 @@ length(which(check$Predicted!=check$Actual))/length(knnpredict)
 for(i in c(1:785)) {
   ktrain[60000,i] <- sum(ktrain[c(1:59999),i])/59999
 }
-
-ktrain[60000,]
-
 dimtrain = ktrain[c(1,which(ktrain[60000,]>10))]
 dimtest = ktest[c(1,which(ktrain[60000,]>10))]
 
 dimtrain = dimtrain[c(1:59999),]
-dimtest = dimtest[c(1:200),]
+dimtest = dimtest[c(400:600),]
 
 dimpredict = knn(train = dimtrain, test = dimtest, cl = trainlabel, k=5)
 
-dimcheck = data.frame(dimpredict,testlabel[c(1:200)])
+dimcheck = data.frame(dimpredict,testlabel[c(400:600)])
 
 names(dimcheck) = c('Predicted','Actual')
 
