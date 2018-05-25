@@ -65,17 +65,22 @@ We then created matrices to hold the subsampled train and test data sets, called
 \section{Removing Collinear Pixels}
 \blank
 
-Removing collinear pixels was pretty simple because we had accomplished this once already when doing lda and qda. Essentially, we are taking a linear combination of the pixels, with each weight being a zero or a one based on whether we decide to remove it or not. In doing this dimension reduction, we are not actually running PCA on the dataset, but rather taking out columns which do not contribute to the overall image as much according to us. Therefore, if the average pixel intensity of a specific pixel over the 59999 training emages is less than 10, we removed the pixel from the reduced training set.\\
+Removing collinear pixels was pretty simple because we had accomplished this once already when doing LDA and QDA. Essentially, we are taking a linear combination of the pixels, with each weight being a zero or a one based on whether we decide to remove it or not. In doing this dimension reduction, we are not actually running PCA on the dataset, but rather taking out columns which do not contribute to the overall image as much according to us. Therefore, if the average pixel intensity of a specific pixel over the 59999 training emages is less than 10, we removed the pixel from the reduced training set.\\
 
 We reduced our number of variables down from 784 to 370, which is a significant decrease. The runtime for a test set of 200 images accordingly decreased from 49 seconds to 23 seconds. Interesting enough, we expected an increase in our test error since we included less explanatory variables. However, our test error actually decreased, from 0.04975124 to 0.04477612.
 
 \section{Mathematical Dimensional Reduction}
 \blank
+By taking advantage of the R's library MASS, we can reduce the dimensionality of our dataset based on their importance. Then we write:
 
-%TODO: Whoever has time can do this one
+\begin{verbatim}
+test_pca = prcomp(test[1:9999, 2:785])
+train_pca = prcomp(train[1:9999, 2:785])
+\end{verbatim}
+
+Here, again, we are wary of employing the entirety of our training set. Instead of using the full 60000 observations, we restrict to the first 10000 in order to make the runtime reasonable. In the second matrix slice (2:785), we are cutting the first column, which contains the actual identification of the image. Even with the relatively small set, however, the runtime is still rather long (around 20 seconds). 
 
 \section{Conclusion}
 \blank 
-%TODO: lol
 
 \end{document}
