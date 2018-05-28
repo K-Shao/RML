@@ -1,10 +1,10 @@
-rawtrain = read.csv(("C:/Users/imjef/Documents/Schoolwork/Machine Learning/Project 2/mnist_train.csv"))
+#rawtrain = read.csv(("C:/Users/imjef/Documents/Schoolwork/Machine Learning/Project 2/mnist_train.csv"))
 for(i in 1:784) {
   colnames(rawtrain)[i+1] = paste(toString(ceiling(i/28)),toString(i%%28),sep = ".")
 }
 colnames(rawtrain)[1] = "true"
 #true = rawtrain[,1]
-rawtest = read.csv(("C:/Users/imjef/Documents/Schoolwork/Machine Learning/Project 2/mnist_test.csv"))
+#rawtest = read.csv(("C:/Users/imjef/Documents/Schoolwork/Machine Learning/Project 2/mnist_test.csv"))
 
 for(i in 1:784) {
   colnames(rawtest)[i+1] = paste(toString(ceiling(i/28)),toString(i%%28),sep = ".")
@@ -17,21 +17,16 @@ testlabel = rawtest[,1]
 ktrain = subset(rawtrain,select= -c(1))
 ktest = subset(rawtest,select= -c(1))
 
-pctrain = prcomp(ktrain)
+full = rbind(ktrain, ktest)
 
-pctest = prcomp(ktest)
-
-screeplot(pctrain, npcs = 784, xlab = "PC", main = "Importance of Principal Components")
-screeplot(pctrain, npcs = 100, xlab = "PC", main = "Importance of Principal Components")
+pca = prcomp(full)
 
 pc = summary(pctrain)$importance
 
-pc[3,]
-
-pctrain$x[,c(1:100)]
-
-pcatrain = data.frame(trainlabel, pctrain$x[,c(1:100)])
-pcatrain
+pcatrain = data.frame(trainlabel, pca$x[1:59999,c(1:100)])
 length(pcatrain)
 
-pcatest = data.frame(testlabel, pctest$x[,c(1:100)])
+pcatest = data.frame(testlabel, pca$x[60000:69998,c(1:100)])
+
+
+

@@ -106,22 +106,33 @@ Unfortunately, by subsampling so much, we inevitably lose data, and with it, acc
 \section{Removing Collinear Pixels}
 \blank
 
-Removing collinear pixels was pretty simple because we had accomplished this once already when doing LDA and QDA. Essentially, we are taking a linear combination of the pixels, with each weight being a zero or a one based on whether we decide to remove it or not. In doing this dimension reduction, we are not actually running PCA on the dataset, but rather taking out columns which do not contribute to the overall image as much according to us. Therefore, if the average pixel intensity of a specific pixel over the 59999 training emages is less than 10, we removed the pixel from the reduced training set.\\
+Removing collinear pixels was pretty simple because we had accomplished this once already when doing LDA and QDA. Essentially, we are taking a linear combination of the pixels, with each weight being a zero or a one based on whether we decide to remove it or not. In doing this dimension reduction, we are not actually running PCA on the dataset, but rather taking out columns which do not contribute to the overall image as much according to us. Therefore, if the average pixel intensity of a specific pixel over the 59999 training images is less than 10, we removed the pixel from the reduced training set.\\
 
 We reduced our number of variables down from 784 to 370, which is a significant decrease. The runtime for a test set of 200 images accordingly decreased from 49 seconds to 23 seconds. Interesting enough, we expected an increase in our test error since we included less explanatory variables. However, our test error actually decreased, from 0.04975124 to 0.04477612.
 
 \section{Mathematical Dimensional Reduction}
 \blank
-By taking advantage of the R's library MASS, we can reduce the dimensionality of our dataset based on their importance. Then we write:
+By taking advantage of the R's library MASS, we can reduce the dimensionality of our dataset based on their importance. However, an important caveat is that we must first combine the training and test sets to do PCA. After all, nothing would work if we determined different principal components for each of the different sets. 
+
+Then we write:
 
 \begin{verbatim}
-test_pca = prcomp(test[1:9999, 2:785])
-train_pca = prcomp(train[1:9999, 2:785])
+ktrain = subset(rawtrain,select= -c(1))
+ktest = subset(rawtest,select= -c(1))
+full = rbind(ktrain, ktest)
+pca = prcomp(full)
+pcatrain = data.frame(trainlabel, pca$x[1:59999,c(1:20)])
+pcatest = data.frame(testlabel, pca$x[60000:69998,c(1:20)])
 \end{verbatim}
 
-Here, again, we are wary of employing the entirety of our training set. Instead of using the full 60000 observations, we restrict to the first 10000 in order to make the runtime reasonable. In the second matrix slice (2:785), we are cutting the first column, which contains the actual identification of the image. Even with the relatively small set, however, the runtime is still rather long (around 20 seconds). 
+The first two lines remove the first column of each set (the labels). The third line concatenates them together, and the fourth performs PCA. The fifth and sixth lines, finally, re-divide them and re-prepend the labels. This process is rather long, however; the PCA step took around 5 minutes. 
+
+However, the results are astounding. When we re-run KNN on this new set of pcatrain and pcatest, keeping the k parameter of 7, we find a test error rate of 0. That is, none of the test set was misclassified. 
 
 \section{Conclusion}
+Between the three dimension reduction methods we investigated, mathematical dimension reduction, PCA, was clearly the best in terms of accuracy. It did take a relatively long time to run. However, when compared to the runtime of classification of the original and its accuracy, it is far superior. Removing collinear pixels, while sensible and beneficial, provided relatively little benefit, only halving the number of predictors and improving error marginally. Pixel intensity averaging, while rather intuitive, loses information (as you would expect when decreasing the quality), and thus made our test error far worse despite speeding up the classification step greatly. 
+
+
 \blank 
 
 \end{document}

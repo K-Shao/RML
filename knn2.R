@@ -7,7 +7,7 @@ load_data <- function () {
 
 
 knn_case <- function(input_case, k = 7) {
-  input_data = data.matrix(test[input_case, 2:50])
+  input_data = data.matrix(test[input_case, 2:21])
   knn(input_data, k)
 }
 
@@ -32,7 +32,7 @@ check <- function (input, truth, input_case = -1) { #I'm using input case -1 to 
 }
 
 check_case <- function (input_case) {
-  check(test[input_case, 2:50], test[input_case,1], input_case)
+  check(test[input_case, 2:21], test[input_case,1], input_case)
 }
 
 show <- function (input) {
@@ -43,12 +43,12 @@ show <- function (input) {
 
 
 show_case <- function (case) {
-  array = as.matrix(test[case,2:50])
+  array = as.matrix(test[case,2:21])
   show(array)
 }
 
 save <- function (case, name) {
-  data = as.matrix(test[case,2:50])
+  data = as.matrix(test[case,2:21])
   data = matrix(data, 7, 7)
   data = data[,c(7:1)]
   png(paste("~/Desktop/Lawrenceville/Term 9/RML/Final/Images2/",name,".png", sep=""))
@@ -65,16 +65,16 @@ full <- function(case) {
 classify_all <- function () {
   total = 0
   correct = 0
-  for (i in 1:10000) {
+  for (i in 1:9999) {
     guess = knn(i)
     truth = test[i,1]
     if (guess==truth) {
       correct = correct + 1
     }
     total = total + 1
-    logFile = "~/Desktop/Lawrenceville/Term 9/RML/Final/log_file2.txt"
+    logFile = "~/Desktop/Lawrenceville/Term 9/RML/Final/log_file3.txt"
     cat(check_case(i), file=logFile, append = TRUE, sep = "\n")
-    save(i, as.character(i))
+    #save(i, as.character(i))
     print(i)
   }
 }
